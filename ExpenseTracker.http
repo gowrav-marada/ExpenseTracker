@@ -1,0 +1,67 @@
+@ExpenseTracker_HostAddress = http://localhost:5037
+@token = YOUR_JWT_TOKEN_HERE
+
+### ?? Auth ??
+
+### Google Login (paste a Google ID token)
+POST {{ExpenseTracker_HostAddress}}/api/auth/google
+Content-Type: application/json
+
+{
+  "idToken": "PASTE_GOOGLE_ID_TOKEN_HERE"
+}
+
+###
+
+### ?? Categories ??
+
+### Get all categories
+GET {{ExpenseTracker_HostAddress}}/api/categories
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+
+### Create a category
+POST {{ExpenseTracker_HostAddress}}/api/categories
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Food",
+  "icon": "??",
+  "color": "#ef4444"
+}
+
+###
+
+### ?? Expenses ??
+
+### Get all expenses (paginated)
+GET {{ExpenseTracker_HostAddress}}/api/expenses?page=1&pageSize=10
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+
+### Create an expense
+POST {{ExpenseTracker_HostAddress}}/api/expenses
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Lunch",
+  "amount": 15.50,
+  "currency": "USD",
+  "category": "Food",
+  "note": "Office lunch"
+}
+
+###
+
+### Get expense summary (current month)
+GET {{ExpenseTracker_HostAddress}}/api/expenses/summary
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
